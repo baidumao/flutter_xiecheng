@@ -36,6 +36,11 @@ class _Tab_NavigatorState extends State<Tab_Navigator> {
               TravelPage(),
               MyPage()
             ],
+           onPageChanged: (index){
+             setState(() {
+               _currentIndex = index;
+             });
+           },
           ),
           onWillPop: exitapp),
       bottomNavigationBar: BottomNavigationBar(
@@ -49,8 +54,6 @@ class _Tab_NavigatorState extends State<Tab_Navigator> {
         selectedFontSize: 12,
         unselectedFontSize: 12,
         onTap: (index) {
-          print("什么情况啊啊+$index");
-//          _controller.jumpToPage(index);
           setState(() {
             _currentIndex = index;
           });
