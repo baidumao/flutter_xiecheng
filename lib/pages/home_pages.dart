@@ -3,6 +3,10 @@ import 'package:flutterxiecheng/dao/home_dao.dart';
 import 'package:flutterxiecheng/model/gridnav_model.dart';
 import 'package:flutterxiecheng/model/home_model.dart';
 import 'package:flutterxiecheng/model/scalebox_model.dart';
+import 'package:flutterxiecheng/widget/cached_image.dart';
+import 'package:flutterxiecheng/widget/loading_container.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -17,11 +21,26 @@ class _HomePageState extends State<HomePage> {
   ScaleBoxModel salesBox; //salesBox数据
   bool _loading = true; //页面加载状态
   String city = '西安市';
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _handleRefresh();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text("Home页"),
+    return Scaffold(
+      backgroundColor: Color(0xfff2f2f2),
+      body: LoadingContainer(
+          child: Stack(
+       children: <Widget>[
+         llistVilew,
+
+       ],
+          ),
+          isLoading: _loading),
+
     );
   }
 
@@ -35,7 +54,7 @@ class _HomePageState extends State<HomePage> {
       setState(() {
         bannerList = model.bannerList;
         localNavList = model.localNavList;
-        gridNav = model.gridview;
+        gridNav = model.gridNav;
         subNavList = model.subNavList;
         salesBox = model.salesBox;
         _loading = false;
@@ -48,4 +67,33 @@ class _HomePageState extends State<HomePage> {
     }
     return null;
   }
+
+  Widget get llistVilew{
+    return ListView(
+     children: <Widget>[
+       //轮播图
+       _banner,
+     ],
+    );
+  }
+
+
+ Widget get _banner {
+   return Container(
+     height: 160,
+     child: Swiper(itemCount: bannerList.length,
+       itemBuilder: (BuildContext context, int index) {
+         return CachedImage(
+           imageUrl: bannerList[index].icon,
+           fit: BoxFit.fill,
+         );
+       },
+       onTap: (index) {
+
+       },
+       autoplay: true,
+
+     ),
+   );
+ }
 }

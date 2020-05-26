@@ -6,13 +6,13 @@ import 'package:flutterxiecheng/model/scalebox_model.dart';
 
 class HomeModel{
  ConfigModel config;
- GridNavModel gridview;
+ GridNavModel gridNav;
  ScaleBoxModel salesBox;
  List<CommonModel> bannerList;
  List<CommonModel> localNavList;
  List<CommonModel> subNavList;
 
- HomeModel({this.config, this.gridview, this.salesBox, this.bannerList,
+ HomeModel({this.config, this.gridNav, this.salesBox, this.bannerList,
      this.localNavList, this.subNavList});
 
  factory HomeModel.fromjson(Map<String,dynamic> json){
@@ -30,7 +30,7 @@ class HomeModel{
 
    return HomeModel(
    config: ConfigModel.fromjson(json["config"]),
-     gridview: GridNavModel.fromjson(json["gridview"]),
+     gridNav: GridNavModel.fromjson(json["gridNav"]),
      salesBox: ScaleBoxModel.fromJson(json["salesBox"]),
      localNavList: localNavList,
      bannerList: bannerList,

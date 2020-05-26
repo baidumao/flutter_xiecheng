@@ -42,20 +42,25 @@ class GridNavItem {
 }
 
 class CommonModel {
-  bool hideAppBar;
-  String title;
-  String url;
-  String icon;
-  String statusBarColor;
 
+  final String icon;
+  final String title;
+  final String url;
+  final String statusBarColor;
+  final bool hideAppBar;
 
+  CommonModel(
+      {this.icon, this.title, this.url, this.statusBarColor, this.hideAppBar});
 
-  CommonModel({this.hideAppBar, this.title, this.url, this.icon,
-      this.statusBarColor});
-
-  factory CommonModel.fromjson(Map<String,dynamic> json){
-    return CommonModel(hideAppBar:json["hideAppBar"], title:json["title"], url:json["url"],icon: json["icon"],statusBarColor: json["statusBarColor"]);
+  factory CommonModel.fromjson(Map<String, dynamic> json) {
+    return CommonModel(
+        icon: json['icon'],
+        title: json['title'],
+        url: json['url'],
+        statusBarColor: json['statusBarColor'],
+        hideAppBar: json['hideAppBar']);
   }
+
   Map<String,dynamic> tojson(){
     Map<String,dynamic> map=Map();
     map["hideAppBar"]=this.hideAppBar;
