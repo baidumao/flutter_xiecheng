@@ -4,8 +4,11 @@ import 'package:flutterxiecheng/model/gridnav_model.dart';
 import 'package:flutterxiecheng/model/home_model.dart';
 import 'package:flutterxiecheng/model/scalebox_model.dart';
 import 'package:flutterxiecheng/widget/cached_image.dart';
+import 'package:flutterxiecheng/widget/grid_nav.dart';
 import 'package:flutterxiecheng/widget/loading_container.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:flutterxiecheng/widget/local_nav.dart';
+import 'package:flutterxiecheng/widget/webview.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -73,6 +76,10 @@ class _HomePageState extends State<HomePage> {
      children: <Widget>[
        //轮播图
        _banner,
+        //本地导航
+        LocalNav(localNavList),
+       //网格卡片
+       GridNav(gridNav)
      ],
     );
   }
@@ -89,9 +96,18 @@ class _HomePageState extends State<HomePage> {
          );
        },
        onTap: (index) {
+        Navigator.push(context, MaterialPageRoute(builder: (cotext){
+          var commonModel = bannerList[index];
 
+          return WebView(url:commonModel.url,statusBarColor:commonModel.statusBarColor,title:commonModel.title);
+        }),
+        );
        },
        autoplay: true,
+       loop: true,
+       pagination: SwiperPagination(
+       ),
+
 
      ),
    );
