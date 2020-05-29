@@ -30,6 +30,7 @@ class _Tab_NavigatorState extends State<Tab_Navigator> {
     return Scaffold(
       body: WillPopScope(
           child: PageView(
+            controller: _controller,
             children: <Widget>[
               HomePage(),
               SerachPage(),
@@ -54,6 +55,7 @@ class _Tab_NavigatorState extends State<Tab_Navigator> {
         selectedFontSize: 12,
         unselectedFontSize: 12,
         onTap: (index) {
+          _controller.jumpToPage(index);
           setState(() {
             _currentIndex = index;
           });
@@ -106,5 +108,11 @@ class _Tab_NavigatorState extends State<Tab_Navigator> {
           style: TextStyle(
               color: _currentIndex != index ? _defaultColor : _activeColor),
         ));
+  }
+
+  @override
+  void dispose() {
+   _controller.dispose();
+    super.dispose();
   }
 }
