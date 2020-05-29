@@ -78,6 +78,7 @@ class GridNav extends StatelessWidget {
                 alignment: AlignmentDirectional.bottomEnd,
               ),
               Container(
+                alignment: Alignment.topCenter,
                 margin: EdgeInsets.only(top: 11),
                 child: Text(model.title,
                     style: TextStyle(fontSize: 14, color: Colors.white)),

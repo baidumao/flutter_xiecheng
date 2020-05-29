@@ -8,6 +8,8 @@ import 'package:flutterxiecheng/widget/grid_nav.dart';
 import 'package:flutterxiecheng/widget/loading_container.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutterxiecheng/widget/local_nav.dart';
+import 'package:flutterxiecheng/widget/scales_box.dart';
+import 'package:flutterxiecheng/widget/sub_nav.dart';
 import 'package:flutterxiecheng/widget/webview.dart';
 
 class HomePage extends StatefulWidget {
@@ -79,7 +81,18 @@ class _HomePageState extends State<HomePage> {
         //本地导航
         LocalNav(localNavList),
        //网格卡片
-       GridNav(gridNav)
+       Padding(padding: EdgeInsets.fromLTRB(7, 4, 7, 4),
+         child: GridNav(gridNav)
+       ),
+       //活动导航
+       Padding(padding: EdgeInsets.fromLTRB(7, 0, 0, 4),
+           child: SubNav(subNavList)
+       ),
+       //底部卡片
+       Padding(padding: EdgeInsets.fromLTRB(7, 0, 0, 4),
+           child: ScalesBox(salesBox)
+       ),
+
      ],
     );
   }
